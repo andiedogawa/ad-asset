@@ -12,7 +12,6 @@
     s.src = 'https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js';
     document.write(s.outerHTML);
 })();
-
 // ======= Mobile Banner 320x50 =======
 (function() {
     var atOptions = {
