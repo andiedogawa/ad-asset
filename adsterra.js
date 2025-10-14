@@ -1,7 +1,6 @@
-// === Adsterra Banner Combo v7 (Auto Center + Responsive + No HTML Edit) ===
-
+// === Adsterra Banner Combo v7.1 (Auto Center + Responsive + Safe Execution) ===
 (function() {
-  // Tambahkan CSS otomatis
+  // Inject CSS for auto-centering
   const css = `
     <style>
       .ad-wrapper {
@@ -29,12 +28,30 @@
   `;
   document.head.insertAdjacentHTML("beforeend", css);
 
-  // Container utama
+  // Create container
   const container = document.createElement("div");
   container.id = "adsterra-wrapper";
+  container.style.width = "100%";
+  container.style.textAlign = "center";
   document.body.appendChild(container);
 
-  // --- Banner Desktop (728x90) ---
+  // Function to safely inject ad scripts
+  function insertAd(html) {
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+    const scripts = temp.querySelectorAll("script");
+    scripts.forEach((oldScript) => {
+      const newScript = document.createElement("script");
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      container.appendChild(newScript);
+    });
+  }
+
+  // Banner Desktop (728x90)
   const desktopAd = `
     <div class="ad-wrapper desktop-ad">
       <script type="text/javascript">
@@ -50,7 +67,7 @@
     </div>
   `;
 
-  // --- Banner Mobile (320x50) ---
+  // Banner Mobile (320x50)
   const mobileAd = `
     <div class="ad-wrapper mobile-ad">
       <script type="text/javascript">
@@ -66,6 +83,7 @@
     </div>
   `;
 
-  // Masukkan ke halaman
-  container.innerHTML = desktopAd + mobileAd;
+  // Insert both ads safely
+  insertAd(desktopAd);
+  insertAd(mobileAd);
 })();
