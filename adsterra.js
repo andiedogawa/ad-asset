@@ -1,75 +1,44 @@
-/*
-=========================================================
- Adsterra Banner Combo vGitHub
- Version: 1.0
- Description:
- - Auto-center banner
- - Responsive (Desktop & Mobile)
- - Siap upload ke GitHub
-=========================================================
-*/
+// adsterra.js
 
 (function() {
-  // === Inject CSS untuk responsive dan auto-center ===
-  const css = `
-    <style>
-      .ad-wrapper {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        margin: 20px auto !important;
-        text-align: center !important;
-      }
-      iframe {
-        border: none !important;
-        display: block !important;
-        margin: 0 auto !important;
-      }
-      @media (min-width:768px) {
-        .desktop-ad { display: flex !important; }
-        .mobile-ad { display: none !important; }
-      }
-      @media (max-width:767px) {
-        .desktop-ad { display: none !important; }
-        .mobile-ad { display: flex !important; }
-      }
-    </style>
-  `;
-  document.head.insertAdjacentHTML("beforeend", css);
+    function loadAd(key, width, height, src) {
+        // Buat wrapper div untuk center
+        var wrapper = document.createElement('div');
+        wrapper.style.textAlign = 'center';
+        wrapper.style.margin = '10px 0'; // optional: beri jarak vertikal
 
-  // === Create main container ===
-  const container = document.createElement("div");
-  container.id = "adsterra-wrapper";
-  document.body.appendChild(container);
+        // Buat script iklan
+        var ad = document.createElement('script');
+        window.atOptions = {
+            key: key,
+            format: 'iframe',
+            height: height,
+            width: width,
+            params: {}
+        };
+        ad.src = src;
+        ad.async = true;
 
-  // === Fungsi untuk memuat banner ===
-  function loadAd(key, width, height, className) {
-    const wrapper = document.createElement("div");
-    wrapper.className = `ad-wrapper ${className}`;
-    container.appendChild(wrapper);
+        // Masukkan script ke wrapper
+        wrapper.appendChild(ad);
 
-    // Konfigurasi Adsterra
-    const configScript = document.createElement("script");
-    configScript.text = `
-      atOptions = {
-        'key': '${key}',
-        'format': 'iframe',
-        'height': ${height},
-        'width': ${width},
-        'params': {}
-      };
-    `;
-    wrapper.appendChild(configScript);
+        // Masukkan wrapper ke body
+        document.body.appendChild(wrapper);
+    }
 
-    // Memuat banner dari server Adsterra
-    const loadScript = document.createElement("script");
-    loadScript.src = \`//www.highperformanceformat.com/${key}/invoke.js\`;
-    loadScript.async = true;
-    wrapper.appendChild(loadScript);
-  }
+    // Iklan pertama
+    loadAd(
+        'c38112be63d5116bd3c4f447604955e4',
+        728,
+        90,
+        'https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js'
+    );
 
-  // === Load Desktop & Mobile Banner ===
-  loadAd('c38112be63d5116bd3c4f447604955e4', 728, 90, 'desktop-ad'); // Desktop
-  loadAd('a2587c5abac6fb7c05cd2e91eac1c480', 320, 50, 'mobile-ad'); // Mobile
+    // Iklan kedua
+    loadAd(
+        'a2587c5abac6fb7c05cd2e91eac1c480',
+        320,
+        50,
+        'https://www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js'
+    );
 })();
