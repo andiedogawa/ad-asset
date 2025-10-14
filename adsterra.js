@@ -1,17 +1,16 @@
 /*
 =========================================================
- Adsterra Banner Combo v8-Final
- Version: 8.0
+ Adsterra Banner Combo vGitHub Final
+ Version: 1.0
  Description:
  - Auto-center banner
  - Responsive (Desktop & Mobile)
- - No HTML editing required
- - Safe script execution order
+ - Load via single script from GitHub/jsDelivr
 =========================================================
 */
 
 (function() {
-  // === Inject CSS for styling and responsiveness ===
+  // === Inject CSS ===
   const css = `
     <style>
       .ad-wrapper {
@@ -39,21 +38,18 @@
   `;
   document.head.insertAdjacentHTML("beforeend", css);
 
-  // === Create main ad container ===
+  // === Create main container ===
   const container = document.createElement("div");
   container.id = "adsterra-wrapper";
-  container.style.width = "100%";
-  container.style.textAlign = "center";
-  container.style.margin = "20px auto";
   document.body.appendChild(container);
 
-  // === Function to safely load Adsterra ads ===
+  // === Function to load Adsterra banner ===
   function loadAd(key, width, height, className) {
     const wrapper = document.createElement("div");
     wrapper.className = `ad-wrapper ${className}`;
     container.appendChild(wrapper);
 
-    // Configuration for Adsterra
+    // Config Adsterra
     const configScript = document.createElement("script");
     configScript.text = `
       atOptions = {
@@ -66,16 +62,14 @@
     `;
     wrapper.appendChild(configScript);
 
-    // Load Adsterra banner
+    // Load banner
     const loadScript = document.createElement("script");
-    loadScript.src = `//www.highperformanceformat.com/${key}/invoke.js`;
+    loadScript.src = \`//www.highperformanceformat.com/${key}/invoke.js\`;
     loadScript.async = true;
     wrapper.appendChild(loadScript);
   }
 
-  // === Desktop Banner (728x90) ===
-  loadAd('c38112be63d5116bd3c4f447604955e4', 728, 90, 'desktop-ad');
-
-  // === Mobile Banner (320x50) ===
-  loadAd('a2587c5abac6fb7c05cd2e91eac1c480', 320, 50, 'mobile-ad');
+  // Desktop & Mobile banners
+  loadAd('c38112be63d5116bd3c4f447604955e4', 728, 90, 'desktop-ad'); // Desktop
+  loadAd('a2587c5abac6fb7c05cd2e91eac1c480', 320, 50, 'mobile-ad'); // Mobile
 })();
