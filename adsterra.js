@@ -1,16 +1,16 @@
 /*
 =========================================================
- Adsterra Banner Combo vGitHub Final
+ Adsterra Banner Combo vGitHub
  Version: 1.0
  Description:
  - Auto-center banner
  - Responsive (Desktop & Mobile)
- - Load via single script from GitHub/jsDelivr
+ - Siap upload ke GitHub
 =========================================================
 */
 
 (function() {
-  // === Inject CSS ===
+  // === Inject CSS untuk responsive dan auto-center ===
   const css = `
     <style>
       .ad-wrapper {
@@ -43,13 +43,13 @@
   container.id = "adsterra-wrapper";
   document.body.appendChild(container);
 
-  // === Function to load Adsterra banner ===
+  // === Fungsi untuk memuat banner ===
   function loadAd(key, width, height, className) {
     const wrapper = document.createElement("div");
     wrapper.className = `ad-wrapper ${className}`;
     container.appendChild(wrapper);
 
-    // Config Adsterra
+    // Konfigurasi Adsterra
     const configScript = document.createElement("script");
     configScript.text = `
       atOptions = {
@@ -62,14 +62,14 @@
     `;
     wrapper.appendChild(configScript);
 
-    // Load banner
+    // Memuat banner dari server Adsterra
     const loadScript = document.createElement("script");
     loadScript.src = \`//www.highperformanceformat.com/${key}/invoke.js\`;
     loadScript.async = true;
     wrapper.appendChild(loadScript);
   }
 
-  // Desktop & Mobile banners
+  // === Load Desktop & Mobile Banner ===
   loadAd('c38112be63d5116bd3c4f447604955e4', 728, 90, 'desktop-ad'); // Desktop
   loadAd('a2587c5abac6fb7c05cd2e91eac1c480', 320, 50, 'mobile-ad'); // Mobile
 })();
