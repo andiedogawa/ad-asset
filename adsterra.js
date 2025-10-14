@@ -1,12 +1,11 @@
-// adsterra.js - versi final
+// adsterra-responsif.js
 (function() {
     function loadAd(key, width, height, src) {
-        // Buat wrapper div untuk center
         var wrapper = document.createElement('div');
         wrapper.style.textAlign = 'center';
-        wrapper.style.margin = '10px 0'; // jarak vertikal
+        wrapper.style.margin = '10px 0';
 
-        // Buat script untuk atOptions unik
+        // Buat script atOptions unik
         var optionsScript = document.createElement('script');
         optionsScript.type = 'text/javascript';
         optionsScript.innerHTML = `
@@ -27,23 +26,38 @@
         adScript.async = true;
         wrapper.appendChild(adScript);
 
-        // Masukkan wrapper ke body
         document.body.appendChild(wrapper);
     }
 
-    // Iklan pertama (desktop)
-    loadAd(
-        'c38112be63d5116bd3c4f447604955e4',
-        728,
-        90,
-        'https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js'
-    );
+    // Fungsi untuk deteksi layar
+    function initAd() {
+        var width = window.innerWidth || document.documentElement.clientWidth;
 
-    // Iklan kedua (mobile)
-    loadAd(
-        'a2587c5abac6fb7c05cd2e91eac1c480',
-        320,
-        50,
-        'https://www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js'
-    );
+        if (width >= 768) {
+            // Desktop → 728x90
+            loadAd(
+                'c38112be63d5116bd3c4f447604955e4',
+                728,
+                90,
+                'https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js'
+            );
+        } else {
+            // Mobile → 320x50
+            loadAd(
+                'a2587c5abac6fb7c05cd2e91eac1c480',
+                320,
+                50,
+                'https://www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js'
+            );
+        }
+    }
+
+    // Jalankan saat load
+    window.addEventListener('load', initAd);
+
+    // Optional: jika resize ingin update iklan
+    window.addEventListener('resize', function() {
+        // Bisa ditambahkan reload iklan jika perlu
+        // Untuk sekarang biarkan statis saat load
+    });
 })();
