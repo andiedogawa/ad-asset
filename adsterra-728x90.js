@@ -1,9 +1,13 @@
-(function() {
-  var adContainer = document.getElementById("banner-top") || document.body;
-  var adBox = document.createElement("div");
-  adBox.style = "text-align:center;margin:15px auto;z-index:9999;position:relative;";
-  adContainer.prepend(adBox);
+// ✅ Adsterra Banner 728x90 (FINAL FIX)
 
+(function() {
+  // buat elemen container iklan
+  var adContainer = document.createElement("div");
+  adContainer.id = "adsterra-banner-728x90";
+  adContainer.style = "text-align:center;margin:15px auto;position:relative;z-index:9999;";
+  document.body.prepend(adContainer);
+
+  // definisikan konfigurasi sebelum script dimuat
   window.atOptions = {
     key: "c38112be63d5116bd3c4f447604955e4",
     format: "iframe",
@@ -12,8 +16,18 @@
     params: {}
   };
 
+  // load script HTTPS aman
   var s = document.createElement("script");
   s.type = "text/javascript";
   s.src = "https://www.highperformanceformat.com/" + atOptions.key + "/invoke.js";
-  adBox.appendChild(s);
+
+  // untuk debug: tampilkan status di console
+  s.onload = function() {
+    console.log("✅ Adsterra script loaded.");
+  };
+  s.onerror = function(e) {
+    console.warn("❌ Adsterra gagal dimuat - mungkin diblokir oleh browser/adblock atau HTTPS.");
+  };
+
+  adContainer.appendChild(s);
 })();
