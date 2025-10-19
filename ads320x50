@@ -1,26 +1,36 @@
-// Adsterra Auto-Center 320x50
+// === Adsterra 320x50 Auto-Center (Safe for GitHub & Hostinger) ===
 document.addEventListener("DOMContentLoaded", function() {
-  const container = document.getElementById("ad-container");
-  if (!container) return;
+  // Buat container utama untuk iklan
+  const adContainer = document.createElement("div");
+  adContainer.id = "adsterra-320x50";
+  adContainer.style.display = "flex";
+  adContainer.style.justifyContent = "center";
+  adContainer.style.alignItems = "center";
+  adContainer.style.width = "100%";
+  adContainer.style.margin = "10px 0";
+  adContainer.style.zIndex = "9999";
 
-  container.style.display = "flex";
-  container.style.justifyContent = "center";
-  container.style.alignItems = "center";
-  container.style.margin = "10px 0";
+  // Tambahkan ke body
+  document.body.appendChild(adContainer);
 
-  const ad = document.createElement("div");
-  ad.innerHTML = `
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'a2587c5abac6fb7c05cd2e91eac1c480',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
-    <\/script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js"><\/script>
+  // Tambahkan script Adsterra secara dinamis
+  const adConfig = document.createElement("script");
+  adConfig.type = "text/javascript";
+  adConfig.text = `
+    atOptions = {
+      'key' : 'a2587c5abac6fb7c05cd2e91eac1c480',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
   `;
 
-  container.appendChild(ad);
+  const adScript = document.createElement("script");
+  adScript.type = "text/javascript";
+  adScript.src = "https://www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js";
+
+  // Masukkan script ke container
+  adContainer.appendChild(adConfig);
+  adContainer.appendChild(adScript);
 });
