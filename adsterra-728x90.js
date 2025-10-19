@@ -1,40 +1,36 @@
-// ✅ FIXED Adsterra 728x90 Auto Inject + Center + Debug
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Injecting Adsterra 728x90...");
+// Adsterra Banner Script (728x90)
 
-  // Buat container iklan
+document.addEventListener("DOMContentLoaded", function () {
+  // Buat elemen container iklan
   const adContainer = document.createElement("div");
-  adContainer.id = "adsterra728x90";
-  adContainer.style.cssText = `
-    width: 100%;
-    text-align: center;
-    margin: 20px auto;
-    z-index: 999;
-  `;
+  adContainer.id = "adsterra-banner";
+  adContainer.style.textAlign = "center";
+  adContainer.style.margin = "15px 0";
+
+  // Tambahkan ke dalam body (bisa diganti ke posisi lain)
   document.body.insertBefore(adContainer, document.body.firstChild);
 
-  // Gunakan namespace unik biar gak bentrok
-  window.atOptions728 = {
-    'key': 'c38112be63d5116bd3c4f447604955e4',
-    'format': 'iframe',
-    'height': 90,
-    'width': 728,
-    'params': {}
+  // Inisialisasi konfigurasi iklan
+  const atOptions = {
+    key: "c38112be63d5116bd3c4f447604955e4",
+    format: "iframe",
+    height: 90,
+    width: 728,
+    params: {},
   };
 
-  // Buat script invoke.js
-  const invoke = document.createElement("script");
-  invoke.type = "text/javascript";
-  invoke.src = "https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js";
+  // Buat elemen <script> untuk Adsterra
+  const adScript = document.createElement("script");
+  adScript.type = "text/javascript";
+  adScript.src = "//www.highperformanceformat.com/" + atOptions.key + "/invoke.js";
 
-  // Debug event
-  invoke.onload = function () {
-    console.log("✅ Adsterra 728x90 script loaded");
-  };
-  invoke.onerror = function () {
-    console.error("❌ Failed to load Adsterra 728x90 invoke.js");
-  };
+  // Masukkan konfigurasi dan script iklan ke dalam container
+  const configScript = document.createElement("script");
+  configScript.type = "text/javascript";
+  configScript.text = `
+    atOptions = ${JSON.stringify(atOptions)};
+  `;
 
-  // Tambahkan ke container
-  adContainer.appendChild(invoke);
+  adContainer.appendChild(configScript);
+  adContainer.appendChild(adScript);
 });
