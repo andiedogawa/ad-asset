@@ -1,0 +1,36 @@
+<!-- Adsterra Auto-Center 320x50 -->
+<div id="adsterra-container"></div>
+
+<script type="text/javascript">
+  // Tunggu sampai halaman termuat
+  document.addEventListener("DOMContentLoaded", function() {
+    // Buat elemen pembungkus
+    const container = document.getElementById("adsterra-container");
+    container.style.display = "flex";
+    container.style.justifyContent = "center";
+    container.style.alignItems = "center";
+    container.style.width = "100%";
+    container.style.margin = "10px 0";
+    container.style.zIndex = "9999";
+
+    // Buat div iklan
+    const adDiv = document.createElement("div");
+    adDiv.id = "adsterra-ad";
+    adDiv.style.textAlign = "center";
+    adDiv.innerHTML = `
+      <script type="text/javascript">
+        atOptions = {
+          'key': 'a2587c5abac6fb7c05cd2e91eac1c480',
+          'format': 'iframe',
+          'height': 50,
+          'width': 320,
+          'params': {}
+        };
+      <\/script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js"><\/script>
+    `;
+
+    // Masukkan ke dalam container
+    container.appendChild(adDiv);
+  });
+</script>
