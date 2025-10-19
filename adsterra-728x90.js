@@ -1,12 +1,10 @@
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Buat elemen iklan
   let adContainer = document.createElement("div");
   adContainer.id = "adsterra-container";
   adContainer.style.textAlign = "center";
   adContainer.style.margin = "15px 0";
-
-  // Masukkan ke dalam body (bisa kamu ubah ke posisi lain)
   document.body.appendChild(adContainer);
 
   // Tambahkan konfigurasi iklan
@@ -27,8 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
   invokeScript.type = "text/javascript";
   invokeScript.src = "https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js";
 
-  // Masukkan kedua script ke container
-  adContainer.appendChild(configScript);
-  adContainer.appendChild(invokeScript);
+  // Masukkan script dengan sedikit delay agar Adsterra bisa load penuh
+  setTimeout(() => {
+    adContainer.appendChild(configScript);
+    adContainer.appendChild(invokeScript);
+  }, 800);
 });
 </script>
