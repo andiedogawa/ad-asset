@@ -1,0 +1,26 @@
+// Adsterra Auto-Center 320x50
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById("ad-container");
+  if (!container) return;
+
+  container.style.display = "flex";
+  container.style.justifyContent = "center";
+  container.style.alignItems = "center";
+  container.style.margin = "10px 0";
+
+  const ad = document.createElement("div");
+  ad.innerHTML = `
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'a2587c5abac6fb7c05cd2e91eac1c480',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    <\/script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/a2587c5abac6fb7c05cd2e91eac1c480/invoke.js"><\/script>
+  `;
+
+  container.appendChild(ad);
+});
