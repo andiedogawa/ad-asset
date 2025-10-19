@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Tambahkan script pemanggil Adsterra
   let invokeScript = document.createElement("script");
   invokeScript.type = "text/javascript";
-  invokeScript.src = "//www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js";
+  invokeScript.src = "https://www.highperformanceformat.com/c38112be63d5116bd3c4f447604955e4/invoke.js";
 
   // Masukkan kedua script ke container
   adContainer.appendChild(configScript);
