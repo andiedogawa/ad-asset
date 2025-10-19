@@ -1,13 +1,9 @@
-// ✅ FIX Adsterra Banner 728x90
-
 (function() {
-  // buat elemen container iklan
-  var adContainer = document.createElement("div");
-  adContainer.id = "adsterra-banner-728x90";
-  adContainer.style = "text-align:center;margin:15px 0;";
-  document.body.insertBefore(adContainer, document.body.firstChild);
+  var adContainer = document.getElementById("banner-top") || document.body;
+  var adBox = document.createElement("div");
+  adBox.style = "text-align:center;margin:15px auto;z-index:9999;position:relative;";
+  adContainer.prepend(adBox);
 
-  // set konfigurasi global yang wajib dikenali Adsterra
   window.atOptions = {
     key: "c38112be63d5116bd3c4f447604955e4",
     format: "iframe",
@@ -16,9 +12,8 @@
     params: {}
   };
 
-  // load script iklan setelah konfigurasi terpasang
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "//www.highperformanceformat.com/" + atOptions.key + "/invoke.js";
-  adContainer.appendChild(script);
+  var s = document.createElement("script");
+  s.type = "text/javascript";
+  s.src = "https://www.highperformanceformat.com/" + atOptions.key + "/invoke.js";
+  adBox.appendChild(s);
 })();
